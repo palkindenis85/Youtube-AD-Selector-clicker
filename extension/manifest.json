@@ -1,0 +1,30 @@
+{
+    "name": "Youtube AD Selector clicker",
+    "short_name": "Youtube AD Selector clicker",
+    "description": "Це розширення допомагає натискати кнопку \"пропустити\" і \"закрити\" рекламу в Youtube.",
+    "manifest_version": 2,
+    "version": "1.0.0",
+    "author": "Palkin Denys",
+    "homepage_url": "https://youtube.com",
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.youtube.com/*"
+            ],
+            "js": [
+                "app.js"
+            ],
+            "run_at": "document_idle",
+            "all_frames": true
+        }
+    ],
+    "permissions": [
+        "storage"
+    ],
+    
+    "icons": {
+        "16": "/icon/icon16.png",
+        "32": "/icon/icon32.png",
+        "96": "/icon/icon96.png"
+    }
+}
