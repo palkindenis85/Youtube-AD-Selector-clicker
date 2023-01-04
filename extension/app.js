@@ -3,9 +3,11 @@
     let setupStatus = {
         appName: 'Youtube AD Selector clicker',
         degug: false,
+        showDegugAutoClick: true,
         isYoutubePlayer: false,
         cmi: 0,
-        consoleMonitorInterval: 15
+        consoleMonitorInterval: 15,
+        setInterval: 250
     }
 
     if (setupStatus.degug) {
@@ -14,7 +16,7 @@
 
     setInterval(function () {
 
-        if (window.location.origin == 'https://www.youtube.com') {
+        if (window.location.origin == 'https://www.youtube.com' || window.location.origin == 'https://m.youtube.com') {
             setupStatus.isYoutubePlayer = true;
         }
 
@@ -43,12 +45,22 @@
             if (reckAds) {
                 clickYoutubeSelector(reckAds);
             }
+           
+
+            let ad_text = document.querySelectorAll('[id^=ad-text]');
+            let ad_image = document.querySelectorAll('[id^=ad-image]');
+            if(ad_text.length > 0){
+                ad_text.forEach(element => element.remove());
+            }
+            if(ad_image.length > 0){
+                ad_image.forEach(element => element.remove());
+            }
         }
 
-    }, 1000);
+    }, setupStatus.setInterval);
 
     function clickYoutubeSelector(element) {
-        if (setupStatus.degug) {
+        if (setupStatus.degug || setupStatus.showDegugAutoClick) {
             console.log("Auto click : " + setupStatus.appName);
         }
         element.click();
